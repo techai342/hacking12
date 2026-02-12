@@ -1,8 +1,6 @@
 
 # GridOS v4.2 - Cyberpunk Terminal Simulator
 
-![GridOS Banner](https://via.placeholder.com/1200x400/000000/00ff41?text=GRID_OS_SYSTEM_ONLINE)
-
 > "The net is vast and infinite."
 
 **GridOS** is a high-fidelity, React-based terminal simulation designed to replicate the experience of a cyberpunk hacking interface. It features a fully responsive layout, interactive CLI commands, real-time AI responses powered by Google Gemini, and immersive visual effects (CRT scanlines, flicker).

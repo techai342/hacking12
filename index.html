@@ -1,0 +1,162 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    
+    <!-- Primary Meta Tags -->
+    <title>GridOS v4.2 | Cyberpunk Hacking Terminal</title>
+    <meta name="title" content="GridOS v4.2 | Cyberpunk Hacking Terminal" />
+    <meta name="description" content="Access the Mainframe. High-fidelity terminal simulator featuring AI-powered responses, network mapping, and system exploitation tools. Authorized personnel only." />
+    <meta name="keywords" content="hacker, terminal, cyberpunk, react, gemini ai, simulation, gridos" />
+    <meta name="author" content="GridOS Systems" />
+    <meta name="theme-color" content="#000000" />
+
+    <!-- Open Graph / Facebook / WhatsApp -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://gridos.netlify.app/" />
+    <meta property="og:title" content="GridOS v4.2 - ACCESS GRANTED" />
+    <meta property="og:description" content="Interactive cyberpunk terminal environment. Execute exploits, trace IP addresses, and bypass security protocols." />
+    <meta property="og:image" content="/og-image.png" />
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content="https://gridos.netlify.app/" />
+    <meta property="twitter:title" content="GridOS v4.2 - ACCESS GRANTED" />
+    <meta property="twitter:description" content="Interactive cyberpunk terminal environment. Execute exploits, trace IP addresses, and bypass security protocols." />
+    <meta property="twitter:image" content="/og-image.png" />
+
+    <!-- PWA Icons -->
+    <link rel="manifest" href="/manifest.json" />
+    <link rel="apple-touch-icon" href="/icon.png" />
+    <link rel="icon" type="image/png" href="/icon.png" />
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=VT323&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+      :root {
+        --terminal-green: #00ff41;
+        --terminal-dark: #0a0a0a;
+        --terminal-glow: rgba(0, 255, 65, 0.2);
+      }
+      body {
+        margin: 0;
+        padding: 0;
+        background-color: var(--terminal-dark);
+        color: var(--terminal-green);
+        font-family: 'VT323', monospace;
+        overflow: hidden;
+        user-select: none;
+        -webkit-tap-highlight-color: transparent;
+      }
+      .crt::before {
+        content: " ";
+        display: block;
+        position: absolute;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;
+        background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.06));
+        z-index: 1000;
+        background-size: 100% 2px, 3px 100%;
+        pointer-events: none;
+      }
+      .crt::after {
+        content: " ";
+        display: block;
+        position: absolute;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;
+        background: rgba(18, 16, 16, 0.1);
+        opacity: 0;
+        z-index: 1000;
+        pointer-events: none;
+        animation: flicker 0.15s infinite;
+      }
+      @keyframes flicker {
+        0% { opacity: 0.27861; }
+        5% { opacity: 0.34769; }
+        10% { opacity: 0.23604; }
+        15% { opacity: 0.90626; }
+        20% { opacity: 0.18128; }
+        25% { opacity: 0.83891; }
+        30% { opacity: 0.65583; }
+        35% { opacity: 0.57807; }
+        40% { opacity: 0.26559; }
+        45% { opacity: 0.84693; }
+        50% { opacity: 0.96019; }
+        55% { opacity: 0.08523; }
+        60% { opacity: 0.71056; }
+        65% { opacity: 0.73437; }
+        70% { opacity: 0.28557; }
+        75% { opacity: 0.96303; }
+        80% { opacity: 0.95151; }
+        85% { opacity: 0.2338; }
+        90% { opacity: 0.21141; }
+        95% { opacity: 0.39193; }
+        100% { opacity: 0.49133; }
+      }
+      .scanline {
+        width: 100%;
+        height: 100px;
+        z-index: 1001;
+        background: linear-gradient(0deg, rgba(0, 0, 0, 0) 0%, rgba(0, 255, 65, 0.1) 50%, rgba(0, 0, 0, 0) 100%);
+        opacity: 0.1;
+        position: absolute;
+        bottom: 100%;
+        animation: scanline 10s linear infinite;
+        pointer-events: none;
+      }
+      @keyframes scanline {
+        0% { bottom: 100%; }
+        100% { bottom: -100px; }
+      }
+      ::-webkit-scrollbar {
+        width: 8px;
+      }
+      ::-webkit-scrollbar-track {
+        background: #050505;
+      }
+      ::-webkit-scrollbar-thumb {
+        background: var(--terminal-green);
+        border-radius: 0px;
+      }
+      ::-webkit-scrollbar-thumb:hover {
+        background: #00cc33;
+      }
+    </style>
+  <script type="importmap">
+{
+  "imports": {
+    "@google/genai": "https://esm.sh/@google/genai@^1.39.0",
+    "react-dom/": "https://esm.sh/react-dom@^19.2.4/",
+    "react/": "https://esm.sh/react@^19.2.4/",
+    "react": "https://esm.sh/react@^19.2.4"
+  }
+}
+</script>
+<link rel="stylesheet" href="/index.css">
+</head>
+  <body class="crt">
+    <div id="root"></div>
+    <div class="scanline"></div>
+    <script type="module" src="/index.tsx"></script>
+    <script>
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => {
+          navigator.serviceWorker.register('/sw.js')
+            .then(registration => {
+              console.log('GridOS ServiceWorker registration successful');
+            })
+            .catch(err => {
+              console.log('GridOS ServiceWorker registration failed: ', err);
+            });
+        });
+      }
+    </script>
+  </body>
+</html>
